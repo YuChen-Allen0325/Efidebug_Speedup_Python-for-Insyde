@@ -1,6 +1,6 @@
 # User's Guide
 
-The purpose of project is list all work directory GUID and compare with "putty.log" to get real output. This saves a lot of time on searching
+The purpose of project is list all GUID and name in work directory and compare with "putty.log" to get real output. This saves a lot of time on searching
 
 ".exe file is in the dist directory"
 
