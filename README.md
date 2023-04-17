@@ -8,3 +8,5 @@ The purpose of project is list all GUID and name in work directory and compare w
 2. It may require 30~60 second to execute
 3. Path is your work directory (need absolute path)
 4. The new file created is called "ClearlyDocument"
+
+In ClearlyDocument, If the line have both of GUID and name that you can find out in the "putty.log". If not, the GUID doesn't exist in the "putty.log"
