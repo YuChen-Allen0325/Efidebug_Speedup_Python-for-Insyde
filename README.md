@@ -10,7 +10,7 @@ The purpose of project is list all GUID and name in work directory and compare w
 2. You have to input your_log_file_name and extension, then you should put the file in your work directory
 3. It may requires a few minute to execute
 4. The new files created are called "ClearlyDocument", "Conflict_GUID", "new_your_log_file_name"
-5. If the executed program are canceled suddenly. You may input error or you should rename your log file
+5. If the executed program is canceled suddenly. You may input error or you should rename your log file
 
 In ClearlyDocument, If the line have both of GUID and name that you can find out in the "putty.log". If not, the GUID doesn't exist in the "putty.log"
 
