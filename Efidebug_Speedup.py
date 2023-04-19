@@ -3,15 +3,13 @@ import linecache
 import shutil
 from InfWriteLog import InfWriteLog as InfWL
 from DecWriteLog import DecWriteLog as DecWL
-
-
         
         
 # ------------------------ Create ClearlyDocument --------------------        
 
-directory = input("please input your work directory path (eq: C:\ADL_N_Setup): ")
+directory = input("please input your work directory path (e.g. : C:\ADL_N_Setup): ")
 directory = str(directory)
-logfile_name = input("please input your log file name (include file extension  eq: putty.log): ")
+logfile_name = input("please input your log file name (include file extension  e.g. : putty.log): ")
 logfile_name = str(logfile_name)
 Make_Sure_Execute_Flag = True
 Change_ClrDoc_Flag = True        
@@ -21,13 +19,11 @@ Change_Line_List = []
 Change_Line_List_Contents = []
 New_Putty_Str_list = []
 Putty_Counter_list = []
-Return_Row_count_list = []
-Return_Row_count_str_list = []
 GUID_Occur_Dic = dict()
 Repeat_GUID_Dic = dict()
 extension_inf = ".inf"
 extension_dec = ".dec"
-exclude_dirs = ["Conf","BaseTools"]
+exclude_dirs = ["Conf","BaseTools","Build"]
 Compare_with_Putty = ''
 Compare_with_Putty_Left_Name = ''
 New_Putty_Str = ''
@@ -50,6 +46,8 @@ if os.path.exists((directory + "\\" + logfile_name)) and (check_new_file_exist =
         if os.path.exists((directory + "\\" + "ClearlyDocument.txt")):
             os.remove((directory + "\\" + "ClearlyDocument.txt"))
         
+        print("\n\nCreate ClearlyDocument.txt...")
+        
         for root, dirs, files in os.walk(directory):
             dirs[:] = [d for d in dirs if d not in exclude_dirs]
             for filename in files:
@@ -65,13 +63,15 @@ if os.path.exists((directory + "\\" + logfile_name)) and (check_new_file_exist =
 
     try:
         
-        if os.path.exists((directory + "\\" + "Conflict_GUID.txt")):
-            os.remove((directory + "\\" + "Conflict_GUID.txt"))
-        
         if (Make_Sure_Execute_Flag == True):
+            
+            if os.path.exists((directory + "\\" + "Conflict_GUID.txt")):
+                os.remove((directory + "\\" + "Conflict_GUID.txt"))
+                
+            print("ClearlyDocument.txt compare with log file...\n")    
+                
             with open((directory + "\\" + "ClearlyDocument.txt"), 'r') as ClrDoc:
                 for ClrDoc_line_by_line in ClrDoc:
-                    
                     Change_Line_Counter_Putty = 0
                     Change_ClrDoc_Flag = True
                     ClrDoc_line_by_line_Str = str(ClrDoc_line_by_line)
@@ -112,6 +112,7 @@ if os.path.exists((directory + "\\" + logfile_name)) and (check_new_file_exist =
                 
     #------------------------- Conflict GUID Log --------------------------------
 
+            print("Create Conflict_GUID.txt ... \n")
             with open((directory + "\\" + "ClearlyDocument.txt"), 'r') as ClrDoc:
                 for ClrDoc_anyline in ClrDoc:
                     
@@ -149,11 +150,8 @@ if os.path.exists((directory + "\\" + logfile_name)) and (check_new_file_exist =
                     
                     if (Occurline_Counter >= 2) and (Last_Time_Compare_Str != Repeat_GUID_Compare_Str):
                         
-                        Return_Row_count_list = [ x+1 for x in Occurline]
-                        Return_Row_count_str_list = str(Return_Row_count_list)
-                        
                         with open((directory + "\\" +"Conflict_GUID.txt"), 'a') as Cmplt_GUID:
-                            Cmplt_GUID.write((Confilt_GUID_Str + ' '+ ' '+ ' ' + 'line:' + Return_Row_count_str_list + '\n'))
+                            Cmplt_GUID.write((Confilt_GUID_Str + '\n'))
                         break
                     
                     Last_Time_Compare_Str = Repeat_GUID_Compare_Str
@@ -162,6 +160,8 @@ if os.path.exists((directory + "\\" + logfile_name)) and (check_new_file_exist =
                     
     #------------------------- Putty Log Replace Word ----------------------------            
 
+            print("log file replace GUID to name ... \n")
+            
             with open(new_file, 'r') as Putty:
                 lines_putty = Putty.readlines()
             
