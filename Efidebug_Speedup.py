@@ -1,5 +1,6 @@
 import os
 import linecache
+import shutil
 from InfWriteLog import InfWriteLog as InfWL
 from DecWriteLog import DecWriteLog as DecWL
 
@@ -18,7 +19,8 @@ Change_Line_List = []
 Change_Line_List_Contents = []
 New_Putty_Str_list = []
 Putty_Counter_list = []
-Repeat_GUID_list = []
+Return_Row_count_list = []
+Return_Row_count_str_list = []
 GUID_Occur_Dic = dict()
 Repeat_GUID_Dic = dict()
 extension_inf = ".inf"
@@ -107,14 +109,10 @@ try:
                         
                 Repeat_GUID_Counter += 1
 
-        Repeat_GUID_list = [Repeat_GUID for Repeat_GUID, occurtimes in GUID_Occur_Dic.items() if len(occurtimes) > 1]
-        
-        for All_GUID, occurtimes in GUID_Occur_Dic.items():
-            for Repeat_GUID in Repeat_GUID_list:
-                if All_GUID == Repeat_GUID:
-                    Repeat_GUID_Dic[All_GUID] = occurtimes        
+        for Repeat_GUID, occurtimes in GUID_Occur_Dic.items():
+            if len(occurtimes) > 1:
+                Repeat_GUID_Dic[Repeat_GUID] = occurtimes  
                 
-
         for Repeat_GUID, Occurline in Repeat_GUID_Dic.items():
             
             Occurline_Counter = 1
@@ -130,14 +128,24 @@ try:
 
                 
                 if (Occurline_Counter >= 2) and (Last_Time_Compare_Str != Repeat_GUID_Compare_Str):
+                    
+                    Return_Row_count_list = [ x+1 for x in Occurline]
+                    Return_Row_count_str_list = str(Return_Row_count_list)
+                    
                     with open((directory + "\Complict_GUID.txt"), 'a') as Cmplt_GUID:
-                        Cmplt_GUID.write((Confilt_GUID_Str + '\n' + '\n'))
+                        Cmplt_GUID.write((Confilt_GUID_Str + ' '+ ' '+ ' ' + 'line:' + Return_Row_count_str_list + '\n'))
                     break
                 
                 Last_Time_Compare_Str = Repeat_GUID_Compare_Str
                 
                 Occurline_Counter += 1   
-            
+                
+#------------------------- Copy original file to compare and rename as original_putty.log --------------------------------
+        original_file = directory + '\putty.log'
+        new_file = directory + '\original_putty.log'
+
+        shutil.copy(original_file, new_file)
+                 
 #------------------------- Putty Log Replace Word ----------------------------            
 
         with open((directory + "\putty.log"), 'r') as Putty:

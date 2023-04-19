@@ -6,7 +6,7 @@ block_cipher = None
 
 a = Analysis(
     ['Efidebug_Speedup.py'],
-    pathex=['C:\\DebugStrPython\\DecWriteLog', 'C:\\DebugStrPython\\GuidTransform', 'C:\\DebugStrPython\\InfWriteLog'],
+    pathex=['C:\\Efidebug_Speedup-for-Insyde-\\DecWriteLog', 'C:\\Efidebug_Speedup-for-Insyde-\\GuidTransform', 'C:\\Efidebug_Speedup-for-Insyde-\\InfWriteLog'],
     binaries=[],
     datas=[],
     hiddenimports=[],
