@@ -8,6 +8,8 @@ The purpose of project is list all GUID and name in work directory and compare w
 
 "work directory = root directory of Insyde code base"
 
+"Some special GUID defined in c file are not listed and not replaced"
+
 1. Path is your work directory (need absolute path)
 2. You have to input your_log_file_name and extension, then you should put the file in your work directory
 3. It may requires a few minute to execute
