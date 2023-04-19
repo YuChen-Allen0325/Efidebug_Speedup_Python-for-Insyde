@@ -19,3 +19,5 @@ In ClearlyDocument, If the line have both of GUID and name that you can find out
 In Conflict_GUID, the file lists all that different name have same GUID
 
 In new_your_log_file_name,all of GUID existed in the code base are replace correspond name 
+
+Don't name your file to "ClearlyDocument" or "Conflict_GUID" before run "Efidebug_Speedup.exe", or there will be overlayed
