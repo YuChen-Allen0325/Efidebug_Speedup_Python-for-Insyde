@@ -15,7 +15,9 @@ The purpose of project is list all GUID and name in work directory and compare w
 5. If the executed program is canceled suddenly. You may input error or you should rename your log file
 
 In ClearlyDocument, If the line have both of GUID and name that you can find out in the your_log_file_name. If not, the GUID doesn't exist in the your_log_file_name
+
 In ClearlyDocument, all of GUID in Insyde code base are listed
+
 
 In Conflict_GUID, the file lists all that different name have same GUID
 
