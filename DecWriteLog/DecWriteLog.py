@@ -40,7 +40,7 @@ def DecWriteLog(InputFileName, ClearlyDocument_Path):
                                     break
                                 Name_Str += UnitChar2
                             
-                            with open((ClearlyDocument_Path+"\ClearlyDocument.txt"), 'a') as ClrDoc:
+                            with open((ClearlyDocument_Path + "\\" + "ClearlyDocument.txt"), 'a') as ClrDoc:
                                 ClrDoc.write('{:<60}{:<}\n'.format(Guid_Str[:38], Name_Str))
     except:
         pass

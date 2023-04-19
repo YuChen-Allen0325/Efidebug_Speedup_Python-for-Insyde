@@ -48,7 +48,7 @@ def InfWriteLog(InputFileName, ClearlyDocument_Path):
         FILE_GUID_Str = FILE_GUID_Str.replace(' ', '')
         FILE_GUID_Str = InfTransformToUppercase.TransToUppercase(FILE_GUID_Str)
 
-        with open((ClearlyDocument_Path+"\ClearlyDocument.txt"), 'a') as ClrDoc:
+        with open((ClearlyDocument_Path + "\\" + "ClearlyDocument.txt"), 'a') as ClrDoc:
             ClrDoc.write('{:<60}{:<}\n'.format(FILE_GUID_Str[:38],'  '+BASE_NAME_Str))
             
     except:
